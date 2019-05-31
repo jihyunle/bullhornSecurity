@@ -16,9 +16,6 @@ public class User {
     @Column (name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -30,6 +27,9 @@ public class User {
 
     @Column (name = "username")
     private String username;
+
+    @Column(name = "password")
+    private String password;
 
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),

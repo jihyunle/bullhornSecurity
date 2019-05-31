@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    //<link rel="stylesheet" type="text/css" href="/Style.css">
+    <th:block th:replace="base :: header"></th:block>
+
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+
+<div class="container" id="words">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 mx-auto">
+            <h3>View Message Detail</h3><br/>
+            Title      :<span th:text="${message.title}"></span><br/>
+            // insert picture(card type)
+            Content    :<p th:text="${message.content}"></p>
+            PostedBy   :<span th:text="${message.postedBy}"></span><br/><br/>
+            PostedDate :<span th:text="${message.postedDate}"></span><br/>
+            <a href="/"><button type="button" class="btn btn-primary btn-sm">Show All Messages</button></a>
+           // <a th:href="@{/delete/{id}(id=${message.id})}"><button type="button" class="btn btn-secondary btn-sm">Delete this message</button></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

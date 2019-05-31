@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/Style.css">
+    <th:block th:replace="base :: header"></th:block>
+
+</head>
+<body>
+<div th:replace="base :: nav"></div>
+<div class="container" id="words">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 mx-auto">
+            <form action="#"
+                  th:action="@{/process}"
+                  th:object="${message}"
+                  method="post">
+                <input type="hidden" th:field="*{id}"/>
+
+                // add   "add new message"
+
+                Title :<input type="text" th:field="*{title}"/>
+                <span th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}"></span><br/><br/>
+
+                Content :<textarea rows="3" th:field="*{content}"/>
+                <span th:if="${#fields.hasErrors('content')}"
+                      th:errors="*{content}"></span><br/><br/>
+
+                PostedDate :<input type="text" th:field="*{postedDate}"/>
+                <span th:if="${#fields.hasErrors('postedDate')}"
+                      th:errors="*{postedDate}"></span><br/><br/>
+
+                PostedBy :<input type="text" th:field="*{postedBy}"/>
+                <span th:if="${#fields.hasErrors('postedBy')}"
+                      th:errors="*{postedBy}"></span><br/><br/><br/>
+
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

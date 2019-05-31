@@ -2,12 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Register</title>
-    <th:block th:insert="base :: header"></th:block>
+    <th:block th:replace="base :: header"></th:block>
 </head>
 <body>
-
-    <div th:replace="base :: navlinks"></div>
-
+    <div th:replace="base :: navl"></div>
     <h2>New User Registration</h2>
 
     <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post">

@@ -32,10 +32,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
+
 
     @RequestMapping("/login")
     public String login() {
