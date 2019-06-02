@@ -31,21 +31,35 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany (fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    @ManyToMany (fetch = FetchType.EAGER)
+//    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Collection<Role> roles;
+
+    //sample
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Collection<Role> roles;
+
+    @OneToMany(mappedBy ="user",
+            fetch = FetchType.EAGER,
+            orphanRemoval = true)
+    public Collection<Message> messages;
+
+//    @ManyToMany (fetch = FetchType.EAGER)
+//    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "message_id"))
+//    private Collection<Message> messages;
 
     public User() {
     }
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        public User(String email, String firstName, String lastName, boolean enabled, String username, String password) {
         this.email = email;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        this.password = password;
     }
 
     public long getId() {
@@ -62,14 +76,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -104,11 +110,27 @@ public class User {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Collection<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Collection<Message> messages) {
+        this.messages = messages;
     }
 }

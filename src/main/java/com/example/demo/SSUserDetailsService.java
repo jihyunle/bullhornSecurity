@@ -26,9 +26,10 @@ public class SSUserDetailsService implements UserDetailsService {
         try {
             User user = userRepository.findByUsername(username);
             if(user == null) {
+                System.out.println("User not found with the provided username" + user.toString());
                 return null;
             }
-
+            System.out.println("User from username" + user.toString());
             return new org.springframework.security.core.userdetails.User(
                     user.getUsername(),
                     user.getPassword(),
@@ -45,6 +46,7 @@ public class SSUserDetailsService implements UserDetailsService {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);
         }
+        System.out.println("User athorities are " + authorities.toString());
         return authorities;
     }
 }

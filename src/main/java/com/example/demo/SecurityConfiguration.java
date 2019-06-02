@@ -22,6 +22,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 // @Configuration and @EnableWebSecurity
 // These annotations indicates to the compiler that the file is a
 // configuration file and Spring Security is enabled for the application.
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -49,6 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     // This is also the method in which you can configure how users are
     // granted access to the application if their details are stored in a
     // database.
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http

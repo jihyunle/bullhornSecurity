@@ -38,25 +38,27 @@ public class DataLoader implements CommandLineRunner{
         Role userRole = roleRepository.findByRole("USER");
         Role adminRole = roleRepository.findByRole("ADMIN");
 
-        User user = new User("bob@bob.com",passwordEncoder.encode("password"),"Bob","Bobberson",true,"bob");
+        User user = new User("bob@bob.com","Bob","Bobberson",true,"bob",passwordEncoder.encode("password"));
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
-        user = new User("admin@adm.com",passwordEncoder.encode("password"),"Admin","User",true,"admin");
+        user = new User("admin@adm.com","Admin","User",true,"admin",passwordEncoder.encode("password"));
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
+
         //========== my data =============
-//        Message message = new Message("My favorite puppy", "so cute!", "5/31", "Tori");
-//        message.setUser(user);
-//        messageRepository.save(message);
-//
-//        message = new Message("My favorite food", "so cute!", "5/31", "Tori");
-//        message.setUser(user);
-//        messageRepository.save(message);
-//
-//        message = new Message("My favorite puppy", "so cute!", "5/31", "Tori");
-//        message.setUser(user);
-//        messageRepository.save(message);
+
+        Message message = new Message("My favorite puppy", "so cute!", "5/31", "Tori");
+        message.setUser(user);
+        messageRepository.save(message);
+
+        message = new Message("My favorite food", "so cute!", "5/31", "Tori");
+        message.setUser(user);
+        messageRepository.save(message);
+
+        message = new Message("My favorite puppy", "so cute!", "5/31", "Tori");
+        message.setUser(user);
+        messageRepository.save(message);
     }
 }

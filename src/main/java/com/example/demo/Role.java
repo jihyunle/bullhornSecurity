@@ -13,8 +13,15 @@ public class Role {
     @Column(unique=true)
     private String role;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    private Collection<User> users;
+
+    //sample
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Collection<User> users;
+
 
     public Role() {
     }

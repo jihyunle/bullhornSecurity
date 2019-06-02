@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>List</title>
@@ -11,10 +12,12 @@
 <div th:replace="base :: nav"></div>
 
 <div class="container" id="words">
+
     <div class="row">
         <div class="col-lg-9 col-md-9 mx-auto">
             <a href="/add">Add a Message</a><br/>
-            <table>
+            <table class="table table-borderless">
+                <thead>
                 <tr>
                     <th>Title</th>
                     <th>Content</th>
@@ -22,39 +25,39 @@
                     <th>PostedBy</th>
                     <th>Actions</th>
                 </tr>
+                <thead>
+                <tbody>
                 <tr th:each="message : ${messages}">
                     <td th:text="${message.title}"></td>
                     <td th:text="${message.content}"></td>
                     <td th:text="${message.postedDate}"></td>
                     <td th:text="${message.postedBy}"></td>
                     <td>
-                    <div sec:authorize="hasAuthority('ADMIN')">
-                    <span th:if="${user_id == message.user.id}">
-                        <a th:href="@{/update/{id}(id=${message.id})}" class="btn btn-info" role="button">Update</a>
-                        <a th:href="@{/delete/{id}(id=${message.id})}" class="btn btn-info" role="button">Delete</a>
-                        <a th:href="@{/detail/{id}(id=${message.id})}" class="btn btn-info" role="button">Details</a>
-                    </span>
-                    </div>
-                    <div sec:authorize="hasAuthority('USER')">
-                    <span>
-                        <a th:href="@{/detail/{id}(id=${message.id})}" class="btn btn-info" role="button">Details</a>
-                    </span>
-                    </div>
-                    </td>
 
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <span th:if="${user_id == message.user.id}">
+                            <a th:href="@{/update/{id}(id=${message.id})}" class="btn btn-info" role="button">Update</a>
+                            <a th:href="@{/delete/{id}(id=${message.id})}" class="btn btn-info" role="button">Delete</a>
+                            <a th:href="@{/detail/{id}(id=${message.id})}" class="btn btn-info" role="button">Details</a>
+                            </span>
+                        </div>
 
-
-
-                    <td>
-                        <a th:href="@{/update/{id}(id=${message.id})}">Update</a> -
-                        <a th:href="@{/detail/{id}(id=${message.id})}">Details</a> -
-                        <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>
+                        <div sec:authorize="hasAuthority('USER')">
+                            <span>
+                                <a th:href="@{/detail/{id}(id=${message.id})}" class="btn btn-info" role="button">Details</a>
+                            </span>
+                        </div>
+                        <div sec:authorize="isAnonymous()">
+                             <span>
+                             <a th:href="@{/detail/{id}(id=${message.id})}" class="btn btn-info" role="button">Details</a>
+                             </span>
+                        </div>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
 </body>
 </html>
-© 2019 GitHub, Inc.
